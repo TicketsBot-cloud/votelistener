@@ -1,0 +1,13 @@
+[bot]
+id=""
+token=""
+
+[server]
+bind="0.0.0.0:3000"
+
+[database]
+host="127.0.0.1"
+port=3306
+username=""
+password=""
+database=""
