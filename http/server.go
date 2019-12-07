@@ -11,6 +11,12 @@ import (
 func StartServer() {
 	router := routing.New()
 
+	indexHandler := fasthttp.CompressHandler(endpoints.Index)
+	router.Get("/", func(ctx *routing.Context) error {
+		indexHandler(ctx.RequestCtx)
+		return nil
+	})
+
 	voteHandler := fasthttp.CompressHandler(endpoints.VoteHandler)
 	router.Post("/vote", func(ctx *routing.Context) error {
 		voteHandler(ctx.RequestCtx)
