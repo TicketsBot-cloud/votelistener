@@ -9,6 +9,5 @@ import (
 func main() {
 	config.LoadConfig()
 	database.ConnectDatabase()
-	database.CreateTables()
 	http.StartServer()
 }
