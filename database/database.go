@@ -1,10 +1,11 @@
 package database
 
 import (
-	"fmt"
+	"context"
 	"github.com/TicketsBot/VoteListener/config"
+	dbclient "github.com/TicketsBot/database"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
+	"github.com/jackc/pgx/v4/pgxpool"
 	"log"
 	"time"
 )
@@ -17,40 +18,24 @@ type(
 )
 
 var(
-	database gorm.DB
+	client *dbclient.Database
 )
 
 func ConnectDatabase() {
 	log.Println("Connecting to DB")
 
-	uri := fmt.Sprintf(
-		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		config.Conf.Database.Username,
-		config.Conf.Database.Password,
-		config.Conf.Database.Host,
-		config.Conf.Database.Port,
-		config.Conf.Database.Database,
-	)
-
-	db, err := gorm.Open("mysql", uri); if err != nil {
+	pool, err := pgxpool.Connect(context.Background(), config.Conf.Database.Uri)
+	if err != nil {
 		panic(err)
 	}
 
-	database = *db
+	client = dbclient.NewDatabase(pool)
 
 	log.Println("Connected to DB")
 }
 
-func CreateTables() {
-	log.Println("Creating tables")
-	database.Exec("CREATE TABLE IF NOT EXISTS votes(id BIGINT UNIQUE PRIMARY KEY, vote_time TIMESTAMP);")
-}
-
-func AddVote(userId int64) {
-	vote := Votes{
-		Id: userId,
-		VoteTime: time.Now(),
+func AddVote(userId uint64) {
+	if err := client.Votes.Set(userId); err != nil {
+		log.Println(err.Error())
 	}
-
-	database.Where(Votes{Id: userId}).Assign(Votes{VoteTime: time.Now()}).FirstOrCreate(&vote)
 }

@@ -5,15 +5,15 @@ import (
 	"io/ioutil"
 )
 
-type(
+type (
 	Config struct {
-		Bot Bot
-		Server Server
+		Bot      Bot
+		Server   Server
 		Database Database
 	}
 
 	Bot struct {
-		Id string
+		Id    string
 		Token string
 	}
 
@@ -22,20 +22,17 @@ type(
 	}
 
 	Database struct {
-		Host string
-		Port uint16
-		Username string
-		Password string
-		Database string
+		Uri string
 	}
 )
 
-var(
+var (
 	Conf Config
 )
 
 func readFile(name string) string {
-	contents, err := ioutil.ReadFile(name); if err != nil {
+	contents, err := ioutil.ReadFile(name)
+	if err != nil {
 		panic(err)
 	}
 
@@ -44,7 +41,8 @@ func readFile(name string) string {
 
 func LoadConfig() {
 	raw := readFile("config.toml")
-	_, err := toml.Decode(raw, &Conf); if err != nil {
+	_, err := toml.Decode(raw, &Conf)
+	if err != nil {
 		panic(err)
 	}
 }

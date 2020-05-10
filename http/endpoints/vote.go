@@ -28,10 +28,6 @@ func VoteHandler(ctx *fasthttp.RequestCtx) {
 	}
 
 	body := ctx.PostBody()
-	if auth == nil {
-		ctx.Error("No post data", 400)
-		return
-	}
 
 	var req Request
 	err := json.Unmarshal(body, &req); if err != nil {
@@ -39,7 +35,7 @@ func VoteHandler(ctx *fasthttp.RequestCtx) {
 		return
 	}
 
-	id, err := strconv.ParseInt(req.User, 10, 64); if err != nil {
+	id, err := strconv.ParseUint(req.User, 10, 64); if err != nil {
 		ctx.Error("Invalid user ID", 400)
 		return
 	}

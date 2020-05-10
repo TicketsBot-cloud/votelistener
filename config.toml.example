@@ -6,8 +6,4 @@ token=""
 bind="0.0.0.0:3000"
 
 [database]
-host="127.0.0.1"
-port=3306
-username=""
-password=""
-database=""
+uri="uri="postgres://user:pwd@localhost:5432/database?pool_max_conns=1"
