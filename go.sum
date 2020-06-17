@@ -3,6 +3,8 @@ github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/TicketsBot/database v0.0.0-20200509224021-fec0aa4b6dbb h1:FqHWOh+llqnS+lPSdUZ/kNSC6IyJAcsvjqJBsXxTNW8=
 github.com/TicketsBot/database v0.0.0-20200509224021-fec0aa4b6dbb/go.mod h1:eky4tBL+IZ0svPgTT0N/9i6j7ygHDQH3784DW+HgfcA=
+github.com/TicketsBot/database v0.0.0-20200617201314-8bc6099808fb h1:B4+Sm8E8h4ag9kvbQdYPYnvuQ5SCZr973HVz5oJ1BKM=
+github.com/TicketsBot/database v0.0.0-20200617201314-8bc6099808fb/go.mod h1:eky4tBL+IZ0svPgTT0N/9i6j7ygHDQH3784DW+HgfcA=
 github.com/bradfitz/gomemcache v0.0.0-20170208213004-1952afaa557d/go.mod h1:PmM6Mmwb0LSuEubjR8N7PtNe1KxZLtOUHtbeikc5h60=
 github.com/cockroachdb/apd v1.1.0 h1:3LFP3629v+1aKXU5Q37mxmRxX/pIu1nijXydLShEq5I=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=
