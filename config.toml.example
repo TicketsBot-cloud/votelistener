@@ -1,6 +1,7 @@
 [bot]
 id=""
-token=""
+topggtoken=""
+dbltoken=""
 
 [server]
 bind="0.0.0.0:3000"

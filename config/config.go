@@ -13,8 +13,9 @@ type (
 	}
 
 	Bot struct {
-		Id    string
-		Token string
+		Id         string
+		TopGGToken string
+		DBLToken   string
 	}
 
 	Server struct {

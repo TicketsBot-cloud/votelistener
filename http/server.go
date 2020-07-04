@@ -3,28 +3,20 @@ package http
 import (
 	"github.com/TicketsBot/VoteListener/config"
 	"github.com/TicketsBot/VoteListener/http/endpoints"
-	"github.com/qiangxue/fasthttp-routing"
-	"github.com/valyala/fasthttp"
+	"github.com/gin-gonic/gin"
 	"log"
 )
 
 func StartServer() {
-	router := routing.New()
+	router := gin.Default()
 
-	indexHandler := fasthttp.CompressHandler(endpoints.Index)
-	router.Get("/", func(ctx *routing.Context) error {
-		indexHandler(ctx.RequestCtx)
-		return nil
-	})
-
-	voteHandler := fasthttp.CompressHandler(endpoints.VoteHandler)
-	router.Post("/vote", func(ctx *routing.Context) error {
-		voteHandler(ctx.RequestCtx)
-		return nil
-	})
+	router.GET("/", endpoints.IndexHandler)
+	router.GET("/vote/topgg", endpoints.TopGGHandler)
+	router.GET("/vote/dbl", endpoints.DBLHandler)
 
 	log.Println("Starting server...")
-	err := fasthttp.ListenAndServe(config.Conf.Server.Bind, router.HandleRequest); if err != nil {
+
+	if err := router.Run(config.Conf.Server.Bind); err != nil {
 		panic(err)
 	}
 }

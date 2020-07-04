@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"github.com/TicketsBot/VoteListener/config"
-	dbclient "github.com/TicketsBot/database"
+	"github.com/TicketsBot/database"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"log"
@@ -18,7 +18,7 @@ type(
 )
 
 var(
-	client *dbclient.Database
+	client *database.Database
 )
 
 func ConnectDatabase() {
@@ -29,7 +29,7 @@ func ConnectDatabase() {
 		panic(err)
 	}
 
-	client = dbclient.NewDatabase(pool)
+	client = database.NewDatabase(pool)
 
 	log.Println("Connected to DB")
 }

@@ -1,7 +1,14 @@
 package endpoints
 
-import  "github.com/valyala/fasthttp"
+import (
+	"github.com/gin-gonic/gin"
+	"math/rand"
+)
 
-func Index(ctx *fasthttp.RequestCtx) {
-	ctx.Redirect("https://top.gg/bot/508391840525975553/vote", 301)
+func IndexHandler(ctx *gin.Context) {
+	if rand.Intn(10) <= 5 {
+		ctx.Redirect(302, "https://top.gg/bot/508391840525975553/vote")
+	} else {
+		ctx.Redirect(302, "https://discordbotlist.com/bots/tickets/upvote")
+	}
 }
