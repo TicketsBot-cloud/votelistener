@@ -11,8 +11,8 @@ func StartServer() {
 	router := gin.Default()
 
 	router.GET("/", endpoints.IndexHandler)
-	router.GET("/vote/topgg", endpoints.TopGGHandler)
-	router.GET("/vote/dbl", endpoints.DBLHandler)
+	router.POST("/vote/topgg", endpoints.TopGGHandler)
+	router.POST("/vote/dbl", endpoints.DBLHandler)
 
 	log.Println("Starting server...")
 
