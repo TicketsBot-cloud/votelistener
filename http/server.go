@@ -5,6 +5,7 @@ import (
 	"github.com/TicketsBot/VoteListener/http/endpoints"
 	"github.com/gin-gonic/gin"
 	"log"
+	"os"
 )
 
 func StartServer() {
@@ -16,7 +17,7 @@ func StartServer() {
 
 	log.Println("Starting server...")
 
-	if err := router.Run(config.Conf.Server.Bind); err != nil {
+	if err := router.Run(os.Getenv("SERVER_ADDR")); err != nil {
 		panic(err)
 	}
 }

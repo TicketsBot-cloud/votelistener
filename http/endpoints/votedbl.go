@@ -1,9 +1,9 @@
 package endpoints
 
 import (
-	"github.com/TicketsBot/VoteListener/config"
 	"github.com/TicketsBot/VoteListener/database"
 	"github.com/gin-gonic/gin"
+	"os"
 	"strings"
 )
 
@@ -24,7 +24,7 @@ func DBLHandler(ctx *gin.Context) {
 
 	secret := split[0]
 
-	if secret != config.Conf.Bot.DBLToken {
+	if secret != os.Getenv("DBL_TOKEN") {
 		ctx.String(403, "Invalid token")
 		return
 	}

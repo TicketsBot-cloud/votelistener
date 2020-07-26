@@ -7,6 +7,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"log"
+	"os"
 	"time"
 )
 
@@ -24,7 +25,7 @@ var(
 func ConnectDatabase() {
 	log.Println("Connecting to DB")
 
-	pool, err := pgxpool.Connect(context.Background(), config.Conf.Database.Uri)
+	pool, err := pgxpool.Connect(context.Background(), os.Getenv("DATABASE_URI"))
 	if err != nil {
 		panic(err)
 	}

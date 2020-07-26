@@ -3,7 +3,6 @@ package main
 import (
 	crypto "crypto/rand"
 	"encoding/binary"
-	"github.com/TicketsBot/VoteListener/config"
 	"github.com/TicketsBot/VoteListener/database"
 	"github.com/TicketsBot/VoteListener/http"
 	"io"
@@ -19,7 +18,6 @@ func main() {
 
 	rand.Seed(int64(binary.LittleEndian.Uint64(b)))
 
-	config.LoadConfig()
 	database.ConnectDatabase()
 	http.StartServer()
 }

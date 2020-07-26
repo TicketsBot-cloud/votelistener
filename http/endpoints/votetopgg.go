@@ -1,9 +1,9 @@
 package endpoints
 
 import (
-	"github.com/TicketsBot/VoteListener/config"
 	"github.com/TicketsBot/VoteListener/database"
 	"github.com/gin-gonic/gin"
+	"os"
 )
 
 type TopGGRequest struct {
@@ -16,7 +16,7 @@ type TopGGRequest struct {
 
 func TopGGHandler(ctx *gin.Context) {
 	auth := ctx.GetHeader("Authorization")
-	if auth != config.Conf.Bot.TopGGToken {
+	if auth != os.Getenv("TOPGG_TOKEN") {
 		ctx.String(403, "Invalid token")
 		return
 	}
