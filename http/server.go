@@ -1,7 +1,6 @@
 package http
 
 import (
-	"github.com/TicketsBot/VoteListener/config"
 	"github.com/TicketsBot/VoteListener/http/endpoints"
 	"github.com/gin-gonic/gin"
 	"log"

@@ -2,7 +2,6 @@ package database
 
 import (
 	"context"
-	"github.com/TicketsBot/VoteListener/config"
 	"github.com/TicketsBot/database"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jackc/pgx/v4/pgxpool"
