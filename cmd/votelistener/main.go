@@ -1,23 +1,42 @@
 package main
 
 import (
-	crypto "crypto/rand"
-	"encoding/binary"
-	"github.com/TicketsBot/VoteListener/database"
-	"github.com/TicketsBot/VoteListener/http"
-	"io"
-	"math/rand"
+	"context"
+	"github.com/TicketsBot/VoteListener/pkg/config"
+	"github.com/TicketsBot/VoteListener/pkg/server"
+	"github.com/TicketsBot/common/observability"
+	"github.com/TicketsBot/database"
+	"github.com/jackc/pgx/v4/pgxpool"
+	"time"
 )
 
 func main() {
-	// seed random
-	b := make([]byte, 8)
-	if _, err := io.ReadFull(crypto.Reader, b); err != nil {
+	cfg, err := config.LoadFromEnv()
+	if err != nil {
 		panic(err)
 	}
 
-	rand.Seed(int64(binary.LittleEndian.Uint64(b)))
+	logger, err := observability.Configure(cfg.SentryDsn, cfg.JsonLogs, cfg.LogLevel)
+	if err != nil {
+		panic(err)
+	}
 
-	database.ConnectDatabase()
-	http.StartServer()
+	logger.Info("Connecting to database...")
+	db := connectToDatabase(cfg)
+	logger.Info("Connected to database")
+
+	s := server.NewServer(logger, cfg, db)
+	s.Run()
+}
+
+func connectToDatabase(cfg config.Config) *database.Database {
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+
+	pool, err := pgxpool.Connect(ctx, cfg.DatabaseUri)
+	if err != nil {
+		panic(err)
+	}
+
+	return database.NewDatabase(pool)
 }
