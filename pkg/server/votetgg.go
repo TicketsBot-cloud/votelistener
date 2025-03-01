@@ -7,7 +7,7 @@ import (
 )
 
 type TGGRequest struct {
-	User uint64 `json:"id,string"`
+	User uint64 `json:"user,string"`
 }
 
 func (s *Server) TggHandler(ctx *gin.Context) {
