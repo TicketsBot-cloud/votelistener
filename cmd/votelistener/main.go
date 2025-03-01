@@ -2,12 +2,13 @@ package main
 
 import (
 	"context"
-	"github.com/TicketsBot/VoteListener/pkg/config"
-	"github.com/TicketsBot/VoteListener/pkg/server"
-	"github.com/TicketsBot/common/observability"
-	"github.com/TicketsBot/database"
-	"github.com/jackc/pgx/v4/pgxpool"
 	"time"
+
+	"github.com/TicketsBot-cloud/VoteListener/pkg/config"
+	"github.com/TicketsBot-cloud/VoteListener/pkg/server"
+	"github.com/TicketsBot-cloud/common/observability"
+	"github.com/TicketsBot-cloud/database"
+	"github.com/jackc/pgx/v4/pgxpool"
 )
 
 func main() {

@@ -14,6 +14,7 @@ type Config struct {
 	DatabaseUri string `env:"DATABASE_URI,required"`
 
 	DblToken string `env:"DBL_TOKEN,required"`
+	TggToken string `env:"TGG_TOKEN,required"`
 }
 
 func LoadFromEnv() (Config, error) {

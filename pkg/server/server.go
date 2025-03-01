@@ -1,11 +1,12 @@
 package server
 
 import (
-	"github.com/TicketsBot/VoteListener/pkg/config"
-	"github.com/TicketsBot/database"
+	"os"
+
+	"github.com/TicketsBot-cloud/VoteListener/pkg/config"
+	"github.com/TicketsBot-cloud/database"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"os"
 )
 
 type Server struct {
@@ -30,6 +31,7 @@ func (s *Server) Run() {
 	})
 
 	router.POST("/vote/dbl", s.DblHandler)
+	router.POST("/vote/tgg", s.TggHandler)
 
 	s.logger.Info("Starting server")
 
