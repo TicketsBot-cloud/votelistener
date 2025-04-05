@@ -27,7 +27,7 @@ func (s *Server) Run() {
 	router := gin.Default()
 
 	router.GET("/", func(ctx *gin.Context) {
-		ctx.Redirect(302, "https://discordbotlist.com/bots/tickets/upvote")
+		ctx.Redirect(302, "https://ticketsbot.cloud/vote")
 	})
 
 	router.POST("/vote/dbl", s.DblHandler)
