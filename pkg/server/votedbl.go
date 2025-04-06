@@ -30,6 +30,7 @@ func (s *Server) DblHandler(ctx *gin.Context) {
 	if err := s.db.WithTx(ctx, func(tx pgx.Tx) error {
 		return s.db.VoteCredits.Increment(ctx, tx, body.Id)
 	}); err != nil {
+		s.logger.Error("Failed to increment vote credits", zap.Error(err), zap.Uint64("user", body.Id))
 		ctx.JSON(500, gin.H{
 			"message": "An error occurred while processing the request",
 		})
